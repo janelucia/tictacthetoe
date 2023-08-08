@@ -1,7 +1,7 @@
 <template>
   <header><NavBar /></header>
-  <main class="mx-auto">
+  <main class="mx-auto p-4">
     <slot />
   </main>
-  <footer><FooterBar /></footer>
+  <FooterBar />
 </template>
