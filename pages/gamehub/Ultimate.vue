@@ -1,5 +1,9 @@
 <template>
-  <Gamefield :field="big" />
+  <div class="flex w-full h-full flex-1 justify-center items-center">
+    <div class="w-1/2 h-1/2">
+      <Gamefield :field="big" />
+    </div>
+  </div>
 </template>
 
 <script setup lang="ts">

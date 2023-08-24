@@ -1,7 +1,7 @@
 <template>
   <div
     v-for="row in field.getRows()"
-    class="flex border border-solid border-primary"
+    class="flex border border-solid border-primary h-full"
   >
     <div
       v-for="cell in row"
