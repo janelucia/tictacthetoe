@@ -15,18 +15,22 @@ export class Field<T = string> {
     return this.field[x][y];
   }
 
-  hasWon() {
+  hasWon(): boolean {
     return (
       this.field[0][0] === this.field[0][1] &&
       this.field[0][1] === this.field[0][2]
     );
   }
 
-  hasSubFields() {
+  /**
+   * if the field is the outer grid  - if not it is the inner grid
+   * @returns true if the field is the outer grid
+   */
+  hasSubFields(): boolean {
     return this.field[0][0] instanceof Field;
   }
 
-  getRows() {
+  getRows(): FieldType<T> {
     return this.field;
   }
 }
