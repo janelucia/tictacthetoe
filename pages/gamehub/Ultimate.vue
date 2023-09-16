@@ -1,5 +1,5 @@
 <template>
-  <div class="flex w-full h-full justify-center items-center">
+  <div class="flex justify-center items-center ">
     <div class='w-1/2'>
       <Gamefield :field="big" />
     </div>
