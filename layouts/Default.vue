@@ -1,7 +1,9 @@
 <template>
+  <div class="h-screen flex flex-col">
   <header><NavBar /></header>
-  <main class="mx-auto p-4">
-    <slot />
-  </main>
-  <FooterBar />
+    <main class="p-4 flex-1">
+      <slot />
+    </main>
+    <FooterBar />
+  </div>
 </template>
