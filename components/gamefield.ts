@@ -22,6 +22,11 @@ export class Field<T = string> {
     );
   }
 
+  markField(x: number, y: number, value: string): boolean {
+      this.field[x][y] = value as T;
+      return true;
+  }
+
   /**
    * if the field is the outer grid  - if not it is the inner grid
    * @returns true if the field is the outer grid
