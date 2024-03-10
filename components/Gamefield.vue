@@ -1,10 +1,10 @@
 <template>
-  <div v-for="(row, rowIndex) in field.rows" class="flex h-calc[100%/3]" :class="{
+  <div v-for="(row, rowIndex) in field.rows" class="flex h-[calc(100%/3)]" :class="{
   'bg-red-500' : activeField === field}">
     <div
-      v-for="(cell, cellIndex) in row"
-      class="flex border border-solid flex-col w-full h-full"
-      :class="{
+        v-for="(cell, cellIndex) in row"
+        class="flex border border-solid flex-col w-full h-full"
+        :class="{
         'border-t-0':
           (rowIndex === 0 && cellIndex === 1) ||
           (rowIndex === 0 && cellIndex === 0) ||
@@ -27,23 +27,26 @@
       }"
     >
       <Gamefield
-        v-if="field.hasSubFields && typeof cell !== 'string'"
-        :field="cell"
-        :player="player"
-        :outer-row="rowIndex"
-        :outer-cell="cellIndex"
-        @clickedCell="(subField, _row, _cell) => $emit('clickedCell', subField, _row, _cell)"
+          v-if="field.hasSubFields && typeof cell !== 'string'"
+          :field="cell"
+          :player="player"
+          :outer-row="rowIndex"
+          :outer-cell="cellIndex"
+          @clickedCell="(subField, _row, _cell) => $emit('clickedCell', subField, _row, _cell)"
       />
-      <div v-if="field.hasSubFields && field.subFieldIsWon(rowIndex,cellIndex)" class="absolute inset-0 flex justify-center items-center">
-        <p class="text-8xl text-accent">{{field.subFieldIsWon(rowIndex,cellIndex)}}</p>
+      <div v-if="field.hasSubFields && field.subFieldIsWon(rowIndex,cellIndex)"
+           class="absolute inset-0 flex justify-center items-center">
+        <p class="text-8xl sm:text-[10rem] font-bold text-accent">{{ field.subFieldIsWon(rowIndex, cellIndex) }}</p>
       </div>
-      <span v-else-if="typeof cell === 'string'" @click="$emit('clickedCell', field as Field<string>, rowIndex, cellIndex)">{{ cell }}</span>
+      <span v-else-if="typeof cell === 'string'"
+            class="w-full h-full flex justify-center items-center text-2xl sm:text-4xl font-bold"
+            @click="$emit('clickedCell', field as Field<string>, rowIndex, cellIndex)">{{ cell }}</span>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { Field } from '@/components/gamefield';
+import {Field} from '@/components/gamefield';
 
 defineProps<{
   field: Field<Field<string>> | Field<string>;
