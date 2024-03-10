@@ -2,7 +2,7 @@
   <div class="navbar bg-base-100">
     <div class="navbar-start">
       <NuxtLink class="btn btn-ghost normal-case text-xl" to="/">
-        <img src="~/public/tic-tac-toe.svg" alt="Logo, tic tac toe field with the name spelled out." class="w-12" />
+        <img src="~/public/logo-tic-tac-the-toe-white.png" alt="Logo, tic tac toe field with the name spelled out." class="w-16 md:w-20" />
       </NuxtLink>
     </div>
     <div class="navbar-end gap-4">
