@@ -1,11 +1,9 @@
 <template>
   <div class="navbar bg-base-100">
     <div class="navbar-start">
-      <NuxtLink class="btn btn-ghost normal-case text-xl" to="/"
-        >
-        <img src="~/public/tic-tac-toe.svg" alt="Logo, tic tac toe field with the name spelled out." class="w-8">
-      </NuxtLink
-      >
+      <NuxtLink class="btn btn-ghost normal-case text-xl" to="/">
+        <img src="~/public/tic-tac-toe.svg" alt="Logo, tic tac toe field with the name spelled out." class="w-8" />
+      </NuxtLink>
     </div>
     <div class="navbar-center hidden md:flex">
       <div class="tabs">
@@ -21,9 +19,7 @@
     </div>
     <div class="navbar-end gap-4">
       <div class="avatar">
-        <div
-          class="w-10 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2"
-        >
+        <div class="w-10 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
           <img src="/images/jane.jpg" alt="profile picture" />
         </div>
       </div>

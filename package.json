@@ -6,7 +6,8 @@
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
+    "postinstall": "nuxt prepare",
+    "fix": "exec prettier --write ."
   },
   "devDependencies": {
     "@nuxt/devtools": "latest",
@@ -15,9 +16,11 @@
     "@types/node": "^20.11.25",
     "daisyui": "^4.7.3",
     "nuxt": "^3.10.3",
-    "nuxt-icon": "^0.6.9"
+    "nuxt-icon": "^0.6.9",
+    "prettier": "3.2.5"
   },
   "dependencies": {
+    "canvas-confetti": "^1.9.2",
     "lodash": "^4.17.21"
   }
 }
