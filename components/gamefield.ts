@@ -1,5 +1,3 @@
-import type { Ref } from '@vue/reactivity';
-
 type FieldType<T> = [[T, T, T], [T, T, T], [T, T, T]];
 
 export class Field<T> {
@@ -63,6 +61,13 @@ export class Field<T> {
     return this.field;
   }
 
+  subFieldIsWon(x,y): 'X' | 'O' | 'D' | null {
+    if (!this.hasSubFields) {
+      throw new Error('Cannot check subfield of non subfield');
+    }
+    return this.field[x][y].hasWon !== null ? this.field[x][y].hasWon : null;
+  }
+
   getXY(x: number, y: number): T {
     return this.field[x][y];
   }
@@ -70,6 +75,9 @@ export class Field<T> {
   markField(x: number, y: number, value: T): void {
     if (this.hasSubFields) {
       throw new Error('Cannot mark field of subfield');
+    }
+    if (this.hasWon) {
+
     }
     this.field[x][y] = value;
   }

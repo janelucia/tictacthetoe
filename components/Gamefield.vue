@@ -21,7 +21,7 @@
           (rowIndex === 2 && cellIndex === 1) ||
           (rowIndex === 2 && cellIndex === 0) ||
           (rowIndex === 2 && cellIndex === 2),
-        'border-secondary border-4': field.hasSubFields,
+        'border-secondary border-4 relative': field.hasSubFields,
         'border-primary border-2 text-center': !field.hasSubFields,
       }"
     >
@@ -33,7 +33,10 @@
         :outer-cell="cellIndex"
         @clickedCell="(subField, _row, _cell) => $emit('clickedCell', subField, _row, _cell)"
       />
-      <span v-else @click="$emit('clickedCell', field as Field<string>, rowIndex, cellIndex)">{{ cell }}</span>
+      <div v-if="field.hasSubFields && field.subFieldIsWon(rowIndex,cellIndex)" class="absolute inset-0 flex justify-center items-center">
+        <p class="text-8xl text-accent">{{field.subFieldIsWon(rowIndex,cellIndex)}}</p>
+      </div>
+      <span v-else-if="typeof cell === 'string'" @click="$emit('clickedCell', field as Field<string>, rowIndex, cellIndex)">{{ cell }}</span>
     </div>
   </div>
 </template>
@@ -47,6 +50,7 @@ defineProps<{
   player: 'X' | 'O';
   outerRow?: number;
   outerCell?: number;
+  won?: boolean;
 }>();
 
 defineEmits<{
