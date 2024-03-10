@@ -42,7 +42,7 @@ const clickedCell = (subField: Field<string>, row: number, cell: number) => {
   console.log('field', field)
 
   if (field.hasWon) {
-    if (field.hasWon === 'draw') {
+    if (field.hasWon === 'D') {
       alert('Draw');
     } else {
       confettiModule({

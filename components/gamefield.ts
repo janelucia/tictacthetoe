@@ -43,7 +43,7 @@ export class Field<T> {
       row.every((col) => ['X', 'O'].includes(this.hasSubFields ? col.hasWon : col)),
     );
     if (isDraw) {
-      return 'draw';
+      return 'D';
     }
 
     return null;
@@ -75,9 +75,6 @@ export class Field<T> {
   markField(x: number, y: number, value: T): void {
     if (this.hasSubFields) {
       throw new Error('Cannot mark field of subfield');
-    }
-    if (this.hasWon) {
-
     }
     this.field[x][y] = value;
   }
