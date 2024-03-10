@@ -30,16 +30,14 @@ import confettiModule from "canvas-confetti/dist/confetti.module.mjs";
 const field = reactive(new Field(() => new Field(() => '_')));
 const player = ref<'X' | 'O'>(Math.random > 0.5 ? 'X' : 'O');
 
-const activeField = ref<Field<Field<string>> | null>(null);
+const activeField = ref<{row: number, col: number} | null>(null);
 
 const clickedCell = (subField: Field<string>, row: number, cell: number) => {
-  console.log('subField.hasWon', subField.hasWon);
-  if (subField.getXY(row, cell) !== '_' || subField.hasWon) return;
+  if (subField.getXY(row, cell) !== '_' || subField.hasWon ) return;
 
   subField.markField(row, cell, player.value);
 
-  console.log('subField.hasWon', subField.hasWon);
-  console.log('field', field)
+  console.log('inside clicked cell', activeField.value);
 
   if (field.hasWon) {
     if (field.hasWon === 'D') {
@@ -53,7 +51,12 @@ const clickedCell = (subField: Field<string>, row: number, cell: number) => {
     }
   } else {
     player.value = player.value === 'X' ? 'O' : 'X';
-    activeField.value = field.getXY(row, cell);
+    if (!field.subFieldIsWon(row, cell)) {
+      activeField.value = { row, col: cell };
+      console.log('subField is not won', activeField.value);
+    } else {
+      activeField.value = null;
+    }
   }
 };
 </script>

@@ -22,6 +22,7 @@
           (rowIndex === 2 && cellIndex === 0) ||
           (rowIndex === 2 && cellIndex === 2),
         'border-secondary border-4 relative': field.hasSubFields,
+        'bg-red-500': activeField?.row === rowIndex && activeField?.col === cellIndex,
         'border-primary border-2 text-center': !field.hasSubFields,
       }"
     >
@@ -46,7 +47,7 @@ import { Field } from '@/components/gamefield';
 
 defineProps<{
   field: Field<Field<string>> | Field<string>;
-  activeField?: Field<Field<string>> | Field<string>;
+  activeField?: { row: number; col: number } | null;
   player: 'X' | 'O';
   outerRow?: number;
   outerCell?: number;
