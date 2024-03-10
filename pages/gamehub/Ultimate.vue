@@ -1,39 +1,48 @@
 <template>
   <div class="max-w-screen-md mx-auto flex gap-12 h-full flex-col relative items-center">
-    <div
-        class="border-x border-b border-solid border-primary rounded-br-box rounded-bl-box flex flex-col gap-2 w-full"
-    >
-      <h2 class="font-bold text-2xl sm:text-4xl px-4 bg-primary w-fit rounded-tr-box rounded-br-box">Tic Tac Toe - Ultimate</h2>
-      <div class="flex justify-between px-4 text-xl sm:text-2xl" :class="{ 'font-bold bg-secondary px-4': player === 'X' }">
+    <div class="border-x border-b border-solid border-primary rounded-br-box rounded-bl-box flex flex-col gap-2 w-full">
+      <h2 class="font-bold text-2xl sm:text-4xl px-4 bg-primary w-fit rounded-tr-box rounded-br-box">
+        Tic Tac Toe - Ultimate
+      </h2>
+      <div
+        class="flex justify-between px-4 text-xl sm:text-2xl"
+        :class="{ 'font-bold bg-secondary px-4': player === 'X' }"
+      >
         <p>Player 1</p>
         <p>X</p>
       </div>
-      <div class="flex justify-between px-4 mb-4 text-xl sm:text-2xl" :class="{ 'font-bold bg-secondary px-4 ': player === 'O' }">
+      <div
+        class="flex justify-between px-4 mb-4 text-xl sm:text-2xl"
+        :class="{ 'font-bold bg-secondary px-4 ': player === 'O' }"
+      >
         <p>Player 2</p>
         <p>O</p>
       </div>
-      <div v-if="field.hasWon"
-           class="absolute bg-secondary rounded flex flex-col items-center justify-center gap-4 translate-x-1/4 p-4">
+      <div
+        v-if="field.hasWon"
+        class="absolute bg-secondary rounded flex flex-col items-center justify-center gap-4 translate-x-1/4 p-4"
+      >
         <p class="font-bold text-4xl">Player {{ player }} has won</p>
         <button class="rounded-box bg-primary px-4 py-2">Play again!</button>
       </div>
     </div>
     <div class="w-[90vw] h-[90vw] sm:w-[60vw] sm:h-[60vw] lg:w-[35vw] lg:h-[35vw]">
-      <Gamefield :field="field" :player="player" @clicked-cell="clickedCell" :active-field="activeField"/>
+      <Gamefield :field="field" :player="player" @clicked-cell="clickedCell" :active-field="activeField" />
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import {Field} from '~/components/gamefield';
-import confettiModule from "canvas-confetti/dist/confetti.module.mjs";
+import { Field } from '~/components/gamefield';
+import confettiModule from 'canvas-confetti/dist/confetti.module.mjs';
 
 const field = reactive(new Field(() => new Field(() => '')));
 const player = ref<'X' | 'O'>(Math.random > 0.5 ? 'X' : 'O');
 
-const activeField = ref<{ row: number, col: number } | null>(null);
+const activeField = ref<{ row: number; col: number } | null>(null);
 
 const clickedCell = (subField: Field<string>, row: number, cell: number) => {
+  // TODO: permit to set a mark into a field which is not selected
   console.log(subField.getXY(row, cell));
   if (subField.getXY(row, cell) !== '' || subField.hasWon) return;
 
@@ -48,13 +57,13 @@ const clickedCell = (subField: Field<string>, row: number, cell: number) => {
       confettiModule({
         particleCount: 300,
         spread: 100,
-        origin: {y: 0.6},
+        origin: { y: 0.6 },
       });
     }
   } else {
     player.value = player.value === 'X' ? 'O' : 'X';
     if (!field.subFieldIsWon(row, cell)) {
-      activeField.value = {row, col: cell};
+      activeField.value = { row, col: cell };
       console.log('subField is not won', activeField.value);
     } else {
       activeField.value = null;
