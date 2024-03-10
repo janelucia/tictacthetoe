@@ -16,9 +16,9 @@
         "border-primary border-2 text-center": !field.hasSubFields(),
       }'
 
-      @click="!field.hasSubFields() && rerenderGame(field, rowIndex, cellIndex, 'X')"
+      @click="!field.hasSubFields() && rerenderGame(field, rowIndex, cellIndex, currentPlayer)"
     >
-      <Gamefield v-if="field.hasSubFields() && typeof cell !== 'string'" :field="cell"  />
+      <Gamefield v-if="field.hasSubFields() && typeof cell !== 'string'" :field="cell" :player="currentPlayer" />
       <span v-else>{{ cell }}</span>
     </div>
   </div>
@@ -26,18 +26,24 @@
 
 <script setup lang="ts">
 import { Field } from '@/components/gamefield';
+import {gameState, updateGameState} from "~/components/game";
 
 defineProps<{
   field: Field<Field<string>> | Field<string>;
+  player: 'X' | 'O' | null;
 }>();
 
 const renderComponent = ref(true);
+
+let currentPlayer = ref(gameState?.currentPlayer || null);
 
 function rerenderGame(field, rowIndex, cellIndex, player) {
   console.log("Rerendering game");
   renderComponent.value = false;
   renderComponent.value = field.markField(rowIndex, cellIndex, player);
+  updateGameState(field);
+  currentPlayer.value = gameState?.currentPlayer || null;
+  console.log('CurrentPlayer after', currentPlayer.value);
 }
-
 
 </script>

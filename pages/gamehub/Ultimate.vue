@@ -4,7 +4,7 @@
         <h2 class="font-bold text-2xl">
           Welcome player X
         </h2>
-        <div class="flex justify-between">
+        <div class="flex justify-between" :class="{'font-bold': currentPlayer === 'X'} ">
           <p>
             Player 1
           </p>
@@ -12,7 +12,7 @@
             X
           </p>
         </div>
-        <div class="flex justify-between">
+        <div class="flex justify-between" :class="{'font-bold': currentPlayer === '0'}">
           <p>
             Player 2
           </p>
@@ -22,25 +22,17 @@
         </div>
       </div>
       <div class="w-full">
-        <Gamefield :field="big" />
+        <Gamefield :field="initializeGameState().field" :player="initializeGameState().currentPlayer" />
       </div>
     </div>
 </template>
 
 <script setup lang="ts">
-import {Field} from '@/components/gamefield';
+import {gameState, initializeGameState} from '~/components/game';
 
-function initializeGame() {
-  return new Field(() => new Field(() => '_'));
-}
+let currentPlayer = gameState?.currentPlayer;
 
-let big = initializeGame();
-
-onMounted(() => {
-  setInterval(() => {
-    console.log(big.getRows());
-  }, 20000);
-});
+console.log(initializeGameState())
 
 
 </script>
