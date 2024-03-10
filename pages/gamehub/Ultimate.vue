@@ -1,14 +1,14 @@
 <template>
-  <div class="md:w-1/2 mx-auto flex gap-12 h-full flex-col relative items-center w-full">
+  <div class="max-w-screen-md mx-auto flex gap-12 h-full flex-col relative items-center">
     <div
-        class="border-x border-b border-solid border-secondary rounded-br-box rounded-bl-box flex flex-col gap-2 w-full"
+        class="border-x border-b border-solid border-primary rounded-br-box rounded-bl-box flex flex-col gap-2 w-full"
     >
-      <h2 class="font-bold text-2xl px-4">Welcome player X</h2>
-      <div class="flex justify-between px-4" :class="{ 'font-bold bg-secondary px-4': player === 'X' }">
+      <h2 class="font-bold text-2xl sm:text-4xl px-4 bg-primary w-fit rounded-tr-box rounded-br-box">Tic Tac Toe - Ultimate</h2>
+      <div class="flex justify-between px-4 text-xl sm:text-2xl" :class="{ 'font-bold bg-secondary px-4': player === 'X' }">
         <p>Player 1</p>
         <p>X</p>
       </div>
-      <div class="flex justify-between px-4 mb-4" :class="{ 'font-bold bg-secondary px-4 ': player === 'O' }">
+      <div class="flex justify-between px-4 mb-4 text-xl sm:text-2xl" :class="{ 'font-bold bg-secondary px-4 ': player === 'O' }">
         <p>Player 2</p>
         <p>O</p>
       </div>
