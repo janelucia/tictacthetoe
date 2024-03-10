@@ -22,7 +22,7 @@
           (rowIndex === 2 && cellIndex === 0) ||
           (rowIndex === 2 && cellIndex === 2),
         'border-secondary border-4 relative': field.hasSubFields,
-        'bg-red-500': activeField?.row === rowIndex && activeField?.col === cellIndex,
+        'bg-red-500': !(activeField?.row === rowIndex && activeField?.col === cellIndex),
         'border-primary border-2 text-center': !field.hasSubFields,
       }"
     >
