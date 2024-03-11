@@ -1,14 +1,17 @@
 <template>
-  <div class="card w-96 bg-neutral text-neutral-content">
+  <div class="card w-96 glass text-neutral-content">
     <div class="card-body items-center text-center">
       <h2 class="card-title">{{ props.title }}</h2>
       <p>{{ props.description }}</p>
       <div class="card-actions justify-end">
-        <NuxtLink :to="solo">
-          <button class="btn btn-primary">Solo</button>
+        <NuxtLink v-if="hotseat" :to="hotseat">
+          <button class="btn btn-primary">Hot Seat</button>
         </NuxtLink>
-        <NuxtLink :to="multiplayer">
+        <NuxtLink v-if="multiplayer" :to="multiplayer">
           <button class="btn btn-ghost">Multiplayer</button>
+        </NuxtLink>
+        <NuxtLink v-if="ai" :to="ai">
+          <button class="btn btn-primary">AI</button>
         </NuxtLink>
       </div>
     </div>
@@ -19,7 +22,8 @@
 const props = defineProps<{
   title: string;
   description: string;
-  solo: string;
-  multiplayer: string;
+  ai?: string;
+  multiplayer?: string;
+  hotseat?: string;
 }>();
 </script>
