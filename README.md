@@ -31,7 +31,8 @@ This variant of Tic Tac Toe introduces a significant amount of strategy compared
 #### TODO 📝
 
 **General**
-
+- [x] stop the game when a player wins or a draw occurs
+- [x] let the player only play in the local board they are supposed to
 - [ ] design winning screen
 - [ ] add possibility to add a name to the player
 - [ ] add leaderboard for all game modes
@@ -39,5 +40,4 @@ This variant of Tic Tac Toe introduces a significant amount of strategy compared
 - [ ] add a restart button
 - [ ] add a settings menu
 - [ ] add a help menu
-- [x] stop the game when a player wins or a draw occurs
-- [x] let the player only play in the local board they are supposed to
+- [ ] add line which runs through winning combination
