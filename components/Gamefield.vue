@@ -21,14 +21,14 @@
           (rowIndex === 2 && cellIndex === 0) ||
           (rowIndex === 2 && cellIndex === 2),
         relative: field.hasSubFields,
-        'border-secondary border-4':
+        'border-secondary border-2 sm:border-4':
           field.hasSubFields &&
           ((activeField?.row === rowIndex && activeField?.col === cellIndex) || activeField === null),
         'border-gray-500 border-2':
           (field.hasSubFields && !(activeField?.row === outerRow && activeField?.col === outerCell)) ||
           (!field.hasSubFields && !(activeField?.row === outerRow && activeField?.col === outerCell)) ||
           activeField === null,
-        'border-primary border-4 text-center':
+        'border-primary border-2 sm:border-4 text-center':
           !field.hasSubFields &&
           ((activeField?.row === outerRow && activeField?.col === outerCell) || activeField === null),
       }"
