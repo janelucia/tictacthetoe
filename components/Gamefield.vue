@@ -1,8 +1,5 @@
 <template>
-  <div
-    v-for="(row, rowIndex) in field.rows"
-    class="flex h-[calc(100%/3)]"
-  >
+  <div v-for="(row, rowIndex) in field.rows" class="flex h-[calc(100%/3)]">
     <div
       v-for="(cell, cellIndex) in row"
       class="flex border border-solid flex-col w-full h-full"
@@ -23,15 +20,17 @@
           (rowIndex === 2 && cellIndex === 1) ||
           (rowIndex === 2 && cellIndex === 0) ||
           (rowIndex === 2 && cellIndex === 2),
-        'relative': field.hasSubFields,
-        'border-gray-500 border-4':
+        relative: field.hasSubFields,
+        'border-secondary border-4':
           field.hasSubFields &&
-          !((activeField?.row === rowIndex && activeField?.col === cellIndex) || activeField === null),
-        'border-red-500 border-4':
-          (activeField?.row === rowIndex && activeField?.col === cellIndex) || activeField === null,
-        'border-primary border-2 text-center':
+          ((activeField?.row === rowIndex && activeField?.col === cellIndex) || activeField === null),
+        'border-gray-500 border-2':
+          (field.hasSubFields && !(activeField?.row === outerRow && activeField?.col === outerCell)) ||
+          (!field.hasSubFields && !(activeField?.row === outerRow && activeField?.col === outerCell)) ||
+          activeField === null,
+        'border-primary border-4 text-center':
           !field.hasSubFields &&
-          !((activeField?.row === rowIndex && activeField?.col === cellIndex) || activeField === null),
+          ((activeField?.row === outerRow && activeField?.col === outerCell) || activeField === null),
       }"
     >
       <Gamefield
@@ -40,7 +39,11 @@
         :player="player"
         :outer-row="rowIndex"
         :outer-cell="cellIndex"
-        @clickedCell="(subField, _row, _cell) => $emit('clickedCell', subField, _row, _cell)"
+        :active-field="activeField"
+        @clickedCell="
+          (subField, _row, _cell, _outerRow, _outerCell) =>
+            $emit('clickedCell', subField, _row, _cell, _outerRow, _outerCell)
+        "
       />
       <div
         v-if="field.hasSubFields && field.subFieldIsWon(rowIndex, cellIndex)"
@@ -51,7 +54,7 @@
       <span
         v-else-if="typeof cell === 'string'"
         class="w-full h-full flex justify-center items-center text-2xl sm:text-4xl font-bold"
-        @click="$emit('clickedCell', field as Field<string>, rowIndex, cellIndex)"
+        @click="$emit('clickedCell', field as Field<string>, rowIndex, cellIndex, outerRow, outerCell)"
         >{{ cell }}</span
       >
     </div>
@@ -71,6 +74,13 @@ defineProps<{
 }>();
 
 defineEmits<{
-  (event: 'clickedCell', field: Field<string>, row: number, cell: number): void;
+  (
+    event: 'clickedCell',
+    field: Field<string>,
+    row: number,
+    cell: number,
+    outerRow?: number | undefined,
+    outerCell?: number | undefined,
+  ): void;
 }>();
 </script>

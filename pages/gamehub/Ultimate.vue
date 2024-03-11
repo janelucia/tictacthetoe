@@ -41,10 +41,29 @@ const player = ref<'X' | 'O'>(Math.random > 0.5 ? 'X' : 'O');
 
 const activeField = ref<{ row: number; col: number } | null>(null);
 
-const clickedCell = (subField: Field<string>, row: number, cell: number) => {
+const clickedCell = (
+  subField: Field<string>,
+  row: number,
+  cell: number,
+  outerRow: number | undefined,
+  outerCell: number | undefined,
+) => {
   // TODO: permit to set a mark into a field which is not selected
   console.log(subField.getXY(row, cell));
-  if (subField.getXY(row, cell) !== '' || subField.hasWon) return;
+
+  console.log(
+    'Clicked in Right Box',
+    activeField.value !== null && activeField.value?.row === outerRow && activeField.value?.col === outerCell,
+    activeField.value,
+  );
+
+  if (
+    subField.getXY(row, cell) !== '' ||
+    subField.hasWon ||
+    (activeField.value !== null && !(activeField.value?.row === outerRow && activeField.value?.col === outerCell)) ||
+    field.hasWon
+  )
+    return;
 
   subField.markField(row, cell, player.value);
 
