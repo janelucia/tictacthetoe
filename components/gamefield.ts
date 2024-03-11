@@ -39,6 +39,7 @@ export class Field<T> {
       }
     }
 
+    // TODO: Draw only works for subfields
     const isDraw = this.field.every((row) =>
       row.every((col) => ['X', 'O'].includes(this.hasSubFields ? col.hasWon : col)),
     );
