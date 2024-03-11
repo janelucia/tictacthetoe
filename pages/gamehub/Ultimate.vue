@@ -48,7 +48,7 @@ const clickedCell = (
   outerRow: number | undefined,
   outerCell: number | undefined,
 ) => {
-  // TODO: permit to set a mark into a field which is not selected
+
   console.log(subField.getXY(row, cell));
 
   console.log(
@@ -58,10 +58,10 @@ const clickedCell = (
   );
 
   if (
-    subField.getXY(row, cell) !== '' ||
+    field.hasWon ||
     subField.hasWon ||
-    (activeField.value !== null && !(activeField.value?.row === outerRow && activeField.value?.col === outerCell)) ||
-    field.hasWon
+    subField.getXY(row, cell) !== '' ||
+    (activeField.value !== null && !(activeField.value?.row === outerRow && activeField.value?.col === outerCell))
   )
     return;
 
@@ -79,6 +79,7 @@ const clickedCell = (
         origin: { y: 0.6 },
       });
     }
+    activeField.value = null;
   } else {
     player.value = player.value === 'X' ? 'O' : 'X';
     if (!field.subFieldIsWon(row, cell)) {
@@ -88,5 +89,6 @@ const clickedCell = (
       activeField.value = null;
     }
   }
+
 };
 </script>
