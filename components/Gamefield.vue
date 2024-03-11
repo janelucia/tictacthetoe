@@ -4,19 +4,19 @@
       v-for="(cell, cellIndex) in row"
       class="flex border border-solid flex-col w-full h-full"
       :class="{
-        'border-t-0':
+        '!border-t-0':
           (rowIndex === 0 && cellIndex === 1) ||
           (rowIndex === 0 && cellIndex === 0) ||
           (rowIndex === 0 && cellIndex === 2),
-        'border-l-0':
+        '!border-l-0':
           (rowIndex === 1 && cellIndex === 0) ||
           (rowIndex === 0 && cellIndex === 0) ||
           (rowIndex === 2 && cellIndex === 0),
-        'border-r-0':
+        '!border-r-0':
           (rowIndex === 1 && cellIndex === 2) ||
           (rowIndex === 0 && cellIndex === 2) ||
           (rowIndex === 2 && cellIndex === 2),
-        'border-b-0':
+        '!border-b-0':
           (rowIndex === 2 && cellIndex === 1) ||
           (rowIndex === 2 && cellIndex === 0) ||
           (rowIndex === 2 && cellIndex === 2),
