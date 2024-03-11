@@ -26,7 +26,7 @@
         <button class="rounded-box bg-primary px-4 py-2">Play again!</button>
       </div>
     </div>
-    <div class="w-[90vw] h-[90vw] sm:w-[60vw] sm:h-[60vw] lg:w-[35vw] lg:h-[35vw]">
+    <div class="w-[90vw] h-[90vw] sm:w-[50vw] sm:h-[50vw] lg:w-[30vw] lg:h-[30vw]">
       <Gamefield :field="field" :player="player" @clicked-cell="clickedCell" :active-field="activeField" />
     </div>
   </div>

@@ -2,9 +2,6 @@
   <div
     v-for="(row, rowIndex) in field.rows"
     class="flex h-[calc(100%/3)]"
-    :class="{
-      'bg-red-500': activeField === field,
-    }"
   >
     <div
       v-for="(cell, cellIndex) in row"
@@ -30,7 +27,7 @@
         'border-gray-500 border-4':
           field.hasSubFields &&
           !((activeField?.row === rowIndex && activeField?.col === cellIndex) || activeField === null),
-        'border-secondary border-4':
+        'border-red-500 border-4':
           (activeField?.row === rowIndex && activeField?.col === cellIndex) || activeField === null,
         'border-primary border-2 text-center':
           !field.hasSubFields &&
