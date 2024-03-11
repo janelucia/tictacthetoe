@@ -7,6 +7,7 @@ module.exports = {
   plugins: [require('daisyui')],
   daisyui: {
     themes: [
+      'synthwave',
       {
         gametheme: {
           primary: '#ff00a0',
@@ -19,7 +20,6 @@ module.exports = {
           warning: '#ff5100',
           error: '#ff8899',
         },
-      },
-      'synthwave'],
+      },],
   },
 };
