@@ -1,9 +1,6 @@
 <template>
-  <div class="max-w-screen-md mx-auto flex gap-12 h-full flex-col relative items-center relative">
-    <div class="border-x border-b border-solid border-primary rounded-br-box rounded-bl-box flex flex-col gap-2 w-full">
-      <h2 class="font-bold text-2xl sm:text-4xl px-4 bg-primary w-fit rounded-tr-box rounded-br-box">
-        Tic Tac Toe - Ultimate
-      </h2>
+  <div  class="max-w-screen-md mx-auto flex gap-12 h-full flex-col relative items-center relative">
+    <Box v-if="!field.hasWon" title="Tic Tac Toe - Ultimate">
       <div
         class="flex justify-between px-4 text-xl sm:text-2xl"
         :class="{ 'font-bold bg-secondary px-4': player === 'X' }"
@@ -18,8 +15,10 @@
         <p>{{playerTwo}}</p>
         <p>O</p>
       </div>
-      <WinningModal v-if="field.hasWon" :player="field.hasWon === 'X' ? playerOne : playerTwo " @new-game="newGame"/>
-    </div>
+    </Box>
+    <Box v-if="field.hasWon" :title="`${field.hasWon === 'X' ? playerOne : playerTwo} won`">
+      <button class="w-fit self-end rounded-br-box rounded-tl-box bg-primary px-4 py-2 text-xl font-bold" @click="newGame">Want to play again?</button>
+    </Box>
     <div class="w-[90vw] h-[90vw] sm:w-[50vw] sm:h-[50vw] lg:w-[30vw] lg:h-[30vw]">
       <Gamefield :field="field" :player="player" @clicked-cell="clickedCell" :active-field="activeField" />
     </div>
