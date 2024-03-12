@@ -30,7 +30,7 @@
         'border-gray-500 border-4':
           (field.hasSubFields && !(activeField?.row === outerRow && activeField?.col === outerCell)) ||
           activeField === null,
-        'border-primary border-2 sm:border-4 text-center':
+        'border-primary border-2 sm:border-4 text-center cursor-pointer':
           !field.hasSubFields &&
           ((activeField?.row === outerRow && activeField?.col === outerCell) || activeField === null),
       }"
