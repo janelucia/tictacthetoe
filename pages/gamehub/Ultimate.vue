@@ -30,7 +30,7 @@ import { Field } from '~/components/gamefield';
 import confettiModule from 'canvas-confetti/dist/confetti.module.mjs';
 import { ref } from 'vue';
 
-let field = reactive(new Field(() => new Field(() => '')));
+let field = reactive<Field<Field<string>>>(new Field(() => new Field(() => ''))) as Field<Field<string>>;
 const player = ref<'X' | 'O'>(Math.random > 0.5 ? 'X' : 'O');
 const activeField = ref<{ row: number; col: number } | null>(null);
 
@@ -99,7 +99,7 @@ const clickedCell = (
 
 const newGame = () => {
   console.log('New Game');
-  field = reactive(new Field(() => new Field(() => '')));
+  field = reactive<Field<Field<string>>>(new Field(() => new Field(() => ''))) as Field<Field<string>>;
   player.value = Math.random() > 0.5 ? 'X' : 'O';
   activeField.value = null;
 };
