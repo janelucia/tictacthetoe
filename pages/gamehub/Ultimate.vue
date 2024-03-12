@@ -31,7 +31,7 @@ import { Field } from '~/components/gamefield';
 import confettiModule from 'canvas-confetti/dist/confetti.module.mjs';
 import { ref } from 'vue';
 
-const field = reactive(new Field(() => new Field(() => '')));
+let field = reactive(new Field(() => new Field(() => '')));
 const player = ref<'X' | 'O'>(Math.random > 0.5 ? 'X' : 'O');
 const activeField = ref<{ row: number; col: number } | null>(null);
 
@@ -100,6 +100,8 @@ const clickedCell = (
 
 const newGame = () => {
   console.log('New Game');
-  navigateTo('/gamehub/ultimate');
+  field = reactive(new Field(() => new Field(() => '')));
+  player.value = Math.random() > 0.5 ? 'X' : 'O';
+  activeField.value = null;
 };
 </script>
