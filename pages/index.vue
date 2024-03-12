@@ -3,11 +3,9 @@
     <h2 class="text-4xl font-bold">Welcome back, {{ playerName }}!</h2>
   </div>
   <div v-else class="h-[30vh] text-center flex flex-col gap-2">
-    <h2 class="text-4xl font-bold">
-      Welcome to tictacthetoe!
-    </h2>
+    <h2 class="text-4xl font-bold">Welcome to tictacthetoe!</h2>
     <p class="text-xl font-bold">
-      Are you new around here? <br>
+      Are you new around here? <br />
       Please enter your name to get started.
     </p>
     <div class="flex gap-2">
@@ -38,20 +36,20 @@ import { ref } from 'vue';
 await navigateTo('/info');
 
 function getItem(item) {
-  console.log(process.client, Date.now())
+  console.log(process.client, Date.now());
   if (process.client) {
-    return localStorage.getItem(item)
+    return localStorage.getItem(item);
   } else {
-    return null
+    return null;
   }
 }
 
 function setItem(item, value) {
   if (process.client) {
-    localStorage.setItem(item, value)
-    return true
+    localStorage.setItem(item, value);
+    return true;
   } else {
-    return false
+    return false;
   }
 }
 
@@ -64,5 +62,4 @@ const saveName = () => {
     localStorage.setItem('playerName', playerNameInput.value);
   }
 };
-
 </script>

@@ -20,6 +20,7 @@ module.exports = {
           warning: '#ff5100',
           error: '#ff8899',
         },
-      },],
+      },
+    ],
   },
 };

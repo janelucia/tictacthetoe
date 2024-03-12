@@ -10,13 +10,13 @@
       </NuxtLink>
     </div>
     <div class="navbar-end gap-4">
-<!--      <NuxtLink to="/">
+      <!--      <NuxtLink to="/">
         <Icon name="mdi:home" class="w-10 h-10 text-primary cursor-pointer" />
       </NuxtLink>-->
-<!--      <NuxtLink to="/leaderboard">
+      <!--      <NuxtLink to="/leaderboard">
         <Icon name="mdi:trophy" class="w-10 h-10 text-primary cursor-pointer" />
       </NuxtLink>-->
-<!--      <NuxtLink to="">
+      <!--      <NuxtLink to="">
         <Icon name="mdi:settings" class="w-10 h-10 text-primary cursor-pointer" />
       </NuxtLink>-->
     </div>

@@ -1,23 +1,28 @@
 <template>
-  <div  class="max-w-screen-md mx-auto flex gap-12 h-full flex-col relative items-center relative">
+  <div class="max-w-screen-md mx-auto flex gap-12 h-full flex-col relative items-center relative">
     <Box v-if="!field.hasWon" title="Tic Tac Toe - Ultimate">
       <div
         class="flex justify-between px-4 text-xl sm:text-2xl"
         :class="{ 'font-bold bg-secondary px-4': player === 'X' }"
       >
-        <p>{{playerOne}}</p>
+        <p>{{ playerOne }}</p>
         <p>X</p>
       </div>
       <div
         class="flex justify-between px-4 mb-4 text-xl sm:text-2xl"
         :class="{ 'font-bold bg-secondary px-4 ': player === 'O' }"
       >
-        <p>{{playerTwo}}</p>
+        <p>{{ playerTwo }}</p>
         <p>O</p>
       </div>
     </Box>
     <Box v-if="field.hasWon" :title="`${field.hasWon === 'X' ? playerOne : playerTwo} won`">
-      <button class="w-fit self-end rounded-br-box rounded-tl-box bg-primary px-4 py-2 text-xl font-bold" @click="newGame">Want to play again?</button>
+      <button
+        class="w-fit self-end rounded-br-box rounded-tl-box bg-primary px-4 py-2 text-xl font-bold"
+        @click="newGame"
+      >
+        Want to play again?
+      </button>
     </Box>
     <div class="w-[90vw] h-[90vw] sm:w-[50vw] sm:h-[50vw] lg:w-[30vw] lg:h-[30vw]">
       <Gamefield :field="field" :player="player" @clicked-cell="clickedCell" :active-field="activeField" />
@@ -35,11 +40,11 @@ const player = ref<'X' | 'O'>(Math.random > 0.5 ? 'X' : 'O');
 const activeField = ref<{ row: number; col: number } | null>(null);
 
 function getItem(item) {
-  console.log(process.client, Date.now())
+  console.log(process.client, Date.now());
   if (process.client) {
-    return localStorage.getItem(item)
+    return localStorage.getItem(item);
   } else {
-    return null
+    return null;
   }
 }
 
@@ -53,7 +58,6 @@ const clickedCell = (
   outerRow: number | undefined,
   outerCell: number | undefined,
 ) => {
-
   console.log(subField.getXY(row, cell));
 
   console.log(
@@ -94,7 +98,6 @@ const clickedCell = (
       activeField.value = null;
     }
   }
-
 };
 
 const newGame = () => {
